@@ -1,0 +1,11 @@
+[deps]
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+IOM_newsAPI_query = "2f70e6e1-4b7e-452a-8221-497046ae2690"
+Oxygen = "df9a0d86-3283-4920-82dc-4555fc0d1d8b"
+PackageCompiler = "9b87118b-4619-50d2-8e1e-99f35a4d4d9d"
+SwaggerMarkdown = "1b6eb727-ad4b-44eb-9669-b9596a6e760f"
+Umbrella = "fb3c7edd-4d33-4ece-bf81-49ff2d418a94"
+
+[compat]
+julia = "1.9.3"
