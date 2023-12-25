@@ -11,7 +11,7 @@ using IOM_newsAPI_query
 
 
 @get "/" function(req::HTTP.Request)
-    return "hello world!"
+    return "HELLO WORLD!"
 end
 
 include("src/news_query.jl")
