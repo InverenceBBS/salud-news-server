@@ -7,5 +7,6 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 - `user_address::Stirng`: Address to read the user file at.
 """
 function read_user_file(user_address)
-    
+    str = some_read(user_address)
+    JSON.parse(str)
 end
