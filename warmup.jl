@@ -3,6 +3,7 @@
 using Pkg
 using Dates
 using IOM_newsAPI_query
+using LibPQ
 
 ## news_query
 warmup_dictionary = Dict(
