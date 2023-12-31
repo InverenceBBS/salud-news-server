@@ -7,7 +7,7 @@ Collects and write dayly news articles to `storage_address`, based on the user f
 """
 function collect_news_job(user_address, storage_address)
     user = read_user_file(user_address)
-    articles = query_newsapi(user, (today()-Day(1), today()), 15000, nothing)
+    articles = query_newsapi(user, (today()-Day(50), today()), 1000, "Date")
     formatted = format_result(articles)
     write_formatted(formatted, storage_address)
 end
