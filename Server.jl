@@ -8,6 +8,18 @@ using Dates
 # think about adding Umbrella for authentication
 #using Umbrella
 using IOM_newsAPI_query
+using LibPQ
+using DataFrames
+using JSON
+using CSV
+
+
+#  Variable  Type  Description  Example 
+#  --------  ----  ------------------  --- 
+include("src/news_collection/format_result.jl")
+include("src/news_collection/read_user_file.jl")
+include("src/news_collection/write_formatted.jl")
+
 
 
 @get "/" function(req::HTTP.Request)
