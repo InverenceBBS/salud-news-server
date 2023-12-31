@@ -6,59 +6,47 @@ Writes data to the quiron news database with the address `storage_address`.
 - `storage_address::String`: Address of the storage database.
 """
 function write_formatted(formatted, storage_address)
+
     addr = nothing
-    if haskey(ENV, "IOMBCKUSER") * haskey(ENV, "IOMBCKPASSWORD") * haskey(ENV, "IOMBCKHOST") * haskey(ENV, "IOMBCKPORT") * haskey(ENV, "IOMBCKDB")
-        addr = "postgres://$(ENV["IOMBCKUSER"]):$(ENV["IOMBCKPASSWORD"])@$(ENV["IOMBCKHOST"]):$(ENV["IOMBCKPORT"])/$(ENV["IOMBCKDB"])"
+    if haskey(ENV, "HEALTHNEWSUSER") * haskey(ENV, "HEALTHNEWSPASSWORD") * haskey(ENV, "HEALTHNEWSHOST") * haskey(ENV, "HEALTHNEWSDB") * haskey(ENV, "HEALTHNEWSPORT")
+        addr = "user=$(ENV["HEALTHNEWSUSER"]) password=$(ENV["HEALTHNEWSPASSWORD"]) host=$(ENV["HEALTHNEWSHOST"]) dbname=$(ENV["HEALTHNEWSDB"]) port=$(ENV["HEALTHNEWSPORT"])"
     else
         error("Missing Keys in the Environment variables")
     end
 
-    conn = LibPQ.Connection(addr)
+    if haskey(ENV, "HEALTHNEWSTABLENAME")*(nrow(formatted)>0)
+        conn = LibPQ.Connection(addr)
 
-    LibPQ.load!(
-        (
-            date=formatted.date, 
-            keyword=formatted.keyword,
-            user_ID=formatted.user_ID,
-            day_text=formatted.day_text, 
-            word_cloud=JSON.json.(formatted.word_count),
-            sentiment=formatted.sentiment,
-            word_changes=JSON.json.(formatted.word_change),
-            articles=parse_array.(formatted.articles),
-            embedding=parse_array.(formatted.embedding),
-            token_idx=JSON.json.(formatted.token_idx),
-            aligning_matrix=parse_array.(formatted.aligning_matrix),
-            anomalous_day=formatted.anomalous_day
-        ),
-        conn,
-        "INSERT INTO salud-news (date, keyword, user_ID, day_text, word_cloud, sentiment, word_changes, articles, embedding, token_idx, aligning_matrix, anomalous_day) VALUES (\$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12);"
-    );
+        LibPQ.load!(
+            (
+                uri = formatted.uri,
+                url = formatted.url ,
+                time = formatted.time,
+                dataType = formatted.dataType,  
+                eventUri = formatted.eventUri, 
+                shares = formatted.shares,
+                location = formatted.location, 
+                wgt = formatted.wgt,
+                isDuplicate = formatted.isDuplicate,  
+                sim = formatted.sim,
+                body = formatted.body,  
+                image = formatted.image,   
+                sentiment = formatted.sentiment,
+                date = formatted.date,
+                relevance = formatted.relevance,
+                dateTimePub = formatted.dateTimePub,  
+                source = formatted.source,
+                lang = formatted.lang,  
+                title = formatted.title,  
+                dateTime = formatted.dateTime,
+                authors = formatted.authors,
+                categories = formatted.concepts 
+            ),
+            conn,
+            "INSERT INTO $(ENV["HEALTHNEWSTABLENAME"]) (uri, url, time, dataType, eventUri, shares, location, wgt, isDuplicate, sim, body, image, sentiment, date, relevance, dateTimePub, source, lang, title, dateTime, authors, categories ) VALUES (\$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14, \$15, \$16, \$17, \$18, \$19, \$20, \$21, \$22);"
+        );
 
-    execute(conn, "COMMIT;")
-    
+        execute(conn, "COMMIT;")
+    end
 end
 
-#  Variable  Type  Description  Example 
-#  --------  ----  ------------------  --- 
-#  time      String  
-#  dataType  String  
-#  eventUri  String  
-#  shares  JSON  
-#  location  JSON  
-#  wgt  Int  
-#  isDuplicate  Bool  
-#  sim  Float  
-#  body  String  
-#  image  String  
-#  sentiment  Float  
-#  date  Date  
-#  url  String  
-#  uri  String  
-#  relevance  Int  
-#  dateTimePub  DateTime  
-#  source  JSON  
-#  lang  String  
-#  title  String  
-#  dateTime  DateTime  
-#  authors  JSON  
-#  TODO: categories  TODO  
