@@ -9,11 +9,14 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 function read_user_file(user_address)
     # str = some_read(user_address)
     # JSON.parse(str)
+    body = String(HTTP.get(ENV["HEALTHMETADATAADDR"]).body)
+    json = JSON.parse(body)
+    kws = getindex.(json, ["value"])
     user = Dict("id"=>999, 
             "keywords"=>Dict(
-                "keywords"=>["Sistema Nacional de Salud"], 
+                "keywords"=> kws[1:18], 
                 "locations"=>"https://en.wikipedia.org/wiki/Spain", 
-                "languages"=>"spa",
+                "languages"=>nothing,
                 #"concepts"=>["https://es.wikipedia.org/wiki/Sistema_Nacional_de_Salud_(España)"],
                 "sources"=>nothing
             ))
