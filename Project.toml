@@ -6,6 +6,7 @@ LibPQ = "194296ae-ab2e-5f79-8cd4-7183a0a5a0d1"
 Oxygen = "df9a0d86-3283-4920-82dc-4555fc0d1d8b"
 PackageCompiler = "9b87118b-4619-50d2-8e1e-99f35a4d4d9d"
 SwaggerMarkdown = "1b6eb727-ad4b-44eb-9669-b9596a6e760f"
+TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 Umbrella = "fb3c7edd-4d33-4ece-bf81-49ff2d418a94"
 
 [compat]

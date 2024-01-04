@@ -2,7 +2,7 @@
 
 julia_version = "1.9.3"
 manifest_format = "2.0"
-project_hash = "19383a8a3528cedbc6d82bb76fd5a7fc2042aaa2"
+project_hash = "eeabfc48d1a3b922d81976473bb92276e9a06331"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -118,9 +118,9 @@ version = "1.10.0"
 
 [[deps.IOM_newsAPI_query]]
 deps = ["Dates", "HTTP", "JSON"]
-git-tree-sha1 = "23740e3e24b3b9c7a34f53bbb24fdb78079c1690"
+git-tree-sha1 = "aab6944d00a6c462b27ae51f56ada2b6ffd0fbba"
 uuid = "2f70e6e1-4b7e-452a-8221-497046ae2690"
-version = "1.0.3-DEV"
+version = "1.0.7-DEV"
 
 [[deps.Infinity]]
 deps = ["Dates", "Random", "Requires"]
