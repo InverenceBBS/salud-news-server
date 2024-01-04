@@ -17,5 +17,11 @@ deps/src/
 docs/build/
 docs/site/
 
+# File for messy working
+working.jl
+
+# Seed keywords
+seed_keywords.csv
+
 # we NEED to push the Manifest to Heroku
 #Manifest.toml
