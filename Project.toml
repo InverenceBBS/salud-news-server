@@ -1,4 +1,5 @@
 [deps]
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 IOM_newsAPI_query = "2f70e6e1-4b7e-452a-8221-497046ae2690"
