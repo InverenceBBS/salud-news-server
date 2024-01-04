@@ -118,9 +118,9 @@ version = "1.10.0"
 
 [[deps.IOM_newsAPI_query]]
 deps = ["Dates", "HTTP", "JSON"]
-git-tree-sha1 = "aab6944d00a6c462b27ae51f56ada2b6ffd0fbba"
+git-tree-sha1 = "19bf530feb2311b0ce6e59bade0071565042a7b8"
 uuid = "2f70e6e1-4b7e-452a-8221-497046ae2690"
-version = "1.0.7-DEV"
+version = "1.0.8-DEV"
 
 [[deps.Infinity]]
 deps = ["Dates", "Random", "Requires"]
