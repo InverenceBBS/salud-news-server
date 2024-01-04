@@ -12,6 +12,7 @@ using LibPQ
 using DataFrames
 using JSON
 using CSV
+using TimeZones
 
 
 #  Variable  Type  Description  Example 
@@ -19,6 +20,7 @@ using CSV
 include("src/news_collection/format_result.jl")
 include("src/news_collection/read_user_file.jl")
 include("src/news_collection/write_formatted.jl")
+include("src/news_collection/db_conn.jl")
 
 
 
