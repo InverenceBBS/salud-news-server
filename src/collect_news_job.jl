@@ -9,5 +9,9 @@ function collect_news_job(user_address, storage_address)
     user = read_user_file(user_address)
     articles = query_newsapi(user, (today()-Day(50), today()), 1000, "Date")
     formatted = format_result(articles)
-    write_formatted(formatted, storage_address)
+    if typeof(formatted) <: DataFrame
+        write_formatted(formatted, storage_address)
+    end
 end
+
+
