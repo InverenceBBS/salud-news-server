@@ -1,8 +1,10 @@
 [deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 IOM_newsAPI_query = "2f70e6e1-4b7e-452a-8221-497046ae2690"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 LibPQ = "194296ae-ab2e-5f79-8cd4-7183a0a5a0d1"
 Oxygen = "df9a0d86-3283-4920-82dc-4555fc0d1d8b"
 PackageCompiler = "9b87118b-4619-50d2-8e1e-99f35a4d4d9d"
