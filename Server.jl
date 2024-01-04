@@ -22,6 +22,7 @@ include("src/news_collection/read_user_file.jl")
 include("src/news_collection/write_formatted.jl")
 include("src/news_collection/db_conn.jl")
 
+include("src/collect_news_job.jl")
 
 
 @get "/" function(req::HTTP.Request)
