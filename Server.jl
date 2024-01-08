@@ -36,7 +36,7 @@ include("src/test_alive.jl")
 # title and version are required
 info = Dict("title" => "Absolut News API", "version" => "0.1")
 openApi = OpenAPI("3.0", info)
-swagger_document = build(openApi)
+swagger_document = SwaggerMarkdown.build(openApi)
   
 # merge the SwaggerMarkdown schema with the internal schema
 mergeschema(swagger_document)
