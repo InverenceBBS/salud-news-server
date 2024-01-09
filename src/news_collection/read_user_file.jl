@@ -14,7 +14,7 @@ function read_user_file(user_address)
     kws = getindex.(json, ["value"])
     user = Dict("id"=>999, 
             "keywords"=>Dict(
-                "keywords"=> kws[1:18], 
+                "keywords"=> kws, 
                 "locations"=>"https://en.wikipedia.org/wiki/Spain", 
                 "languages"=>nothing,
                 #"concepts"=>["https://es.wikipedia.org/wiki/Sistema_Nacional_de_Salud_(España)"],
