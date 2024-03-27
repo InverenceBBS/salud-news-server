@@ -16,11 +16,17 @@ function read_user_file_location()
     json = JSON.parse(news_concepts)
     concepts = getindex.(json, ["value"])
 
+
+    news_concepts = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],"/news_concept")).body)
+    json = JSON.parse(news_concepts)
+    concepts = getindex.(json, ["value"])
+
     user = Dict("id"=>999, 
             "keywords"=>Dict(
                 "keywords"=> kws, 
                 "locations"=>nothing, 
                 "languages"=>nothing,
+                "concepts"=>concepts,
                 "concepts"=>concepts,
                 "sources"=>nothing
             ))

@@ -6,14 +6,15 @@ Collects and write dayly news articles to `storage_address`, based on the user f
 - `storage_address::String`: Address to write the news articles to.
 """
 function collect_news_job(read_user_function; write_to_db=true)
-    println("ping")
     user = read_user_function()
-    println("pong")
     articles = query_newsapi(user, (today()-Day(1), today()), 1000, "Date")
-    println("pang")
     formatted = format_result(articles)
-    if typeof(formatted) <: DataFrame
-        write_formatted(formatted)
+    if write_to_db
+        if typeof(formatted) <: DataFrame
+            write_formatted(formatted)
+        end
+    else
+        return formatted
     end
 end
 
