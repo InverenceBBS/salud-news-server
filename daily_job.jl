@@ -20,4 +20,5 @@ include("src/news_collection/write_formatted.jl")
 include("src/news_collection/db_conn.jl")
 
 include("src/collect_news_job.jl")
-collect_news_job("","")
+collect_news_job(read_user_file_location)
+collect_news_job(read_user_file_sources)

@@ -5,7 +5,7 @@ Writes data to the quiron news database with the address `storage_address`.
 - `formatted::Vector{Dict}`: Vector of dictionaries of formatted articles to fit the database structure.
 - `storage_address::String`: Address of the storage database.
 """
-function write_formatted(formatted, storage_address)
+function write_formatted(formatted)
 
     addr = nothing
     if haskey(ENV, "HEALTHNEWSUSER") * haskey(ENV, "HEALTHNEWSPASSWORD") * haskey(ENV, "HEALTHNEWSHOST") * haskey(ENV, "HEALTHNEWSDB") * haskey(ENV, "HEALTHNEWSPORT")
