@@ -57,6 +57,6 @@ function read_user_file_sources()
                 "locations"=>nothing, 
                 "languages"=>nothing,
                 "concepts"=>concepts,
-                "sources"=>["elpais.com", "elespanol.com", "eldiario.es", "elmundo.com", "larazon.es", "elconfidencial.com"]
+                "sources"=>["elpais.com", "elespanol.com", "eldiario.es", "elmundo.com", "larazon.es", "elconfidencial.com", "abc.es"]
             ))
 end
