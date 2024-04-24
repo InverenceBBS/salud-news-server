@@ -7,7 +7,7 @@ Collects and write dayly news articles to `storage_address`, based on the user f
 """
 function collect_news_job(read_user_function; write_to_db=true)
     user = read_user_function()
-    articles = query_newsapi(user, (today()-Day(1), today()), 1000, "Date")
+    articles = query_newsapi(user, (Date("2024-03-30"), Date("2024-04-24")), 10000, "Date")
     formatted = format_result(articles)
     if write_to_db
         if typeof(formatted) <: DataFrame

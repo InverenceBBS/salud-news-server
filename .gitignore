@@ -22,6 +22,6 @@ working.jl
 
 # Seed keywords
 seed_keywords.csv
-
+*.csv
 # we NEED to push the Manifest to Heroku
 #Manifest.toml
