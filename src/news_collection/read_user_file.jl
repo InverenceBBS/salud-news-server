@@ -8,11 +8,11 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 """
 function read_user_file_location(endpoint_dict)
 
-    news_kws = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],endpoint_dict["keyword"])).body)
+    news_kws = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["keyword"])).body)
     json = JSON.parse(news_kws)
     kws = getindex.(json, ["value"])
 
-    news_concepts = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],endpoint_dict["concept"])).body)
+    news_concepts = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["concept"])).body)
     json = JSON.parse(news_concepts)
     concepts = getindex.(json, ["value"])
 
@@ -38,15 +38,15 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 """
 function read_user_file_sources()
 
-    news_kws = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],endpoint_dict["keyword"])).body)
+    news_kws = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["keyword"])).body)
     json = JSON.parse(news_kws)
     kws = getindex.(json, ["value"])
 
-    news_concepts = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],endpoint_dict["concept"])).body)
+    news_concepts = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["concept"])).body)
     json = JSON.parse(news_concepts)
     concepts = getindex.(json, ["value"])
 
-    news_sources = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],endpoint_dict["source"])).body)
+    news_sources = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["source"])).body)
     json = JSON.parse(news_sources)
     sources = getindex.(json, ["value"])
 
