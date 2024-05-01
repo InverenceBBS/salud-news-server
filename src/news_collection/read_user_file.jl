@@ -36,7 +36,7 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 # Arguments
 - `user_address::Stirng`: Address to read the user file at.
 """
-function read_user_file_sources()
+function read_user_file_sources(endpoint_dict)
 
     news_kws = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["keyword"])).body)
     json = JSON.parse(news_kws)
