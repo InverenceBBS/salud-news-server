@@ -6,20 +6,20 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 # Arguments
 - `user_address::Stirng`: Address to read the user file at.
 """
-function read_user_file_location()
+function read_user_file_location(endpoint_dict)
 
-    news_kws = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],"/news_kws")).body)
+    news_kws = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],endpoint_dict["keyword"])).body)
     json = JSON.parse(news_kws)
     kws = getindex.(json, ["value"])
 
-    news_concepts = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],"/news_concept")).body)
+    news_concepts = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],endpoint_dict["concept"])).body)
     json = JSON.parse(news_concepts)
     concepts = getindex.(json, ["value"])
 
     user = Dict("id"=>999, 
             "keywords"=>Dict(
                 "keywords"=> kws, 
-                "locations"=>nothing, 
+                "locations"=>endpoint_dict["location"], 
                 "languages"=>nothing,
                 "concepts"=>concepts,
                 "concepts"=>concepts,
@@ -38,13 +38,17 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 """
 function read_user_file_sources()
 
-    news_kws = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],"/news_kws")).body)
+    news_kws = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],endpoint_dict["keyword"])).body)
     json = JSON.parse(news_kws)
     kws = getindex.(json, ["value"])
 
-    news_concepts = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],"/news_concept")).body)
+    news_concepts = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],endpoint_dict["concept"])).body)
     json = JSON.parse(news_concepts)
     concepts = getindex.(json, ["value"])
+
+    news_sources = String(HTTP.get(string(ENV["HEALTHMETADATAADDR"],endpoint_dict["source"])).body)
+    json = JSON.parse(news_sources)
+    sources = getindex.(json, ["value"])
 
     user = Dict("id"=>999, 
             "keywords"=>Dict(
@@ -52,6 +56,6 @@ function read_user_file_sources()
                 "locations"=>nothing, 
                 "languages"=>nothing,
                 "concepts"=>concepts,
-                "sources"=>["elpais.com", "elespanol.com", "eldiario.es", "elmundo.com", "larazon.es", "elconfidencial.com", "abc.es"]
+                "sources"=>sources
             ))
 end

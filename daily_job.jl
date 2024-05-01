@@ -20,5 +20,11 @@ include("src/news_collection/write_formatted.jl")
 include("src/news_collection/db_conn.jl")
 
 include("src/collect_news_job.jl")
-collect_news_job(read_user_file_location)
-collect_news_job(read_user_file_sources)
+
+endpoint_dict = {"keyword"=>"/news_kws",
+                  "concept"=>"/news_concept",
+                  "source"=>"/news_sources",
+                  "location"=>"https://en.wikipedia.org/wiki/Spain"}
+
+collect_news_job(endpoint_dict, read_user_file_location)
+collect_news_job(endpoint_dict, read_user_file_sources)
