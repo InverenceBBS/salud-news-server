@@ -21,10 +21,12 @@ include("src/news_collection/db_conn.jl")
 
 include("src/collect_news_job.jl")
 
-endpoint_dict = {"keyword"=>"/news_kws",
+endpoint_dict = Dict("keyword"=>"/news_kws",
                   "concept"=>"/news_concept",
                   "source"=>"/news_sources",
-                  "location"=>"https://en.wikipedia.org/wiki/Spain"}
+                  "location"=>"https://en.wikipedia.org/wiki/Spain",
+                  "news_db"=>ENV["NEWS_DB_URL"],
+                  "news_table"=>ENV["HEALTHNEWSTABLENAME"])
 
 collect_news_job(endpoint_dict, read_user_file_location)
 collect_news_job(endpoint_dict, read_user_file_sources)
