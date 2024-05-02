@@ -50,6 +50,8 @@ function read_user_file_sources(endpoint_dict)
     json = JSON.parse(news_sources)
     sources = getindex.(json, ["value"])
 
+    sources = replace.(replace.(sources, "http://"=>""), "/"=>"")
+
     user = Dict("id"=>999, 
             "keywords"=>Dict(
                 "keywords"=> kws, 
