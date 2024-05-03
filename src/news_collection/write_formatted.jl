@@ -5,7 +5,7 @@ Writes data to the quiron news database with the address `storage_address`.
 - `formatted::Vector{Dict}`: Vector of dictionaries of formatted articles to fit the database structure.
 - `storage_address::String`: Address of the storage database.
 """
-function write_formatted(formatted)
+function write_formatted(formatted, endpoint_dict)
 
     addr = nothing
     if haskey(ENV, "HEALTHNEWSUSER") * haskey(ENV, "HEALTHNEWSPASSWORD") * haskey(ENV, "HEALTHNEWSHOST") * haskey(ENV, "HEALTHNEWSDB") * haskey(ENV, "HEALTHNEWSPORT")
@@ -14,7 +14,7 @@ function write_formatted(formatted)
         error("Missing Keys in the Environment variables")
     end
 
-    if haskey(ENV, "HEALTHNEWSTABLENAME")*(nrow(formatted)>0)
+    if (nrow(formatted)>0)
         conn = LibPQ.Connection(addr)
 
         LibPQ.load!(
@@ -43,7 +43,7 @@ function write_formatted(formatted)
                 categories = formatted.concepts 
             ),
             conn,
-            "INSERT INTO $(ENV["HEALTHNEWSTABLENAME"]) (uri, url, time, dataType, eventUri, shares, location, wgt, isDuplicate, sim, body, image, sentiment, date, relevance, dateTimePub, source, lang, title, dateTime, authors, categories ) VALUES (\$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14, \$15, \$16, \$17, \$18, \$19, \$20, \$21, \$22)
+            "INSERT INTO $(endpoint_dict["news_table"]) (uri, url, time, dataType, eventUri, shares, location, wgt, isDuplicate, sim, body, image, sentiment, date, relevance, dateTimePub, source, lang, title, dateTime, authors, categories ) VALUES (\$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14, \$15, \$16, \$17, \$18, \$19, \$20, \$21, \$22)
             ON CONFLICT (uri) DO UPDATE SET
                 wgt = EXCLUDED.wgt,
                 uri = EXCLUDED.uri,
