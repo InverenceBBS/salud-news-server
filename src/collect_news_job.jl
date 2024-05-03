@@ -11,7 +11,7 @@ function collect_news_job(endpoint_dict, read_user_function; write_to_db=true)
     formatted = format_result(articles)
     if write_to_db
         if typeof(formatted) <: DataFrame
-            write_formatted(formatted)
+            write_formatted(formatted, endpoint_dict)
         end
     else
         return formatted
