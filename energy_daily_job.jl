@@ -21,12 +21,12 @@ include("src/news_collection/db_conn.jl")
 
 include("src/collect_news_job.jl")
 
-endpoint_dict = Dict("keyword"=>"/news_kws",
-                  "concept"=>"/news_concept",
-                  "source"=>"/news_sources",
+endpoint_dict = Dict("keyword"=>"/energy_news_kws",
+                  "concept"=>"/energy_news_kws",
+                  "source"=>"/energy_news_sources",
                   "location"=>"https://en.wikipedia.org/wiki/Spain",
                   "news_db"=>ENV["NEWS_DB_URL"],
-                  "news_table"=>ENV["HEALTHNEWSTABLENAME"])
+                  "news_table"=>ENV["ENERGYNEWSTABLENAME"])
 
 collect_news_job(endpoint_dict, read_user_file_location)
 collect_news_job(endpoint_dict, read_user_file_sources)
