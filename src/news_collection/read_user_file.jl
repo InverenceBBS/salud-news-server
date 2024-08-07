@@ -37,6 +37,7 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 - `user_address::Stirng`: Address to read the user file at.
 """
 function read_user_file_sources(endpoint_dict)
+    
     kws = DataFrame(execute(LibPQ.Connection(db_conn()), "Select keyword from news_kws")).keyword
 
     concepts = [] # REPLACE this with ^ once the concepts table is added
