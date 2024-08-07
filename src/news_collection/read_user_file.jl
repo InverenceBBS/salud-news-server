@@ -8,13 +8,9 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 """
 function read_user_file_location(endpoint_dict)
 
-    news_kws = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["keyword"])).body)
-    json = JSON.parse(news_kws)
-    kws = getindex.(json, ["value"])
+    kws = Vector{String}(DataFrame(execute(LibPQ.Connection(db_conn()), "Select keyword from news_kws")).keyword)
 
-    news_concepts = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["concept"])).body)
-    json = JSON.parse(news_concepts)
-    concepts = getindex.(json, ["value"])
+    concepts = Vector{String}(DataFrame(execute(LibPQ.Connection(db_conn()), "Select concept from news_concepts")).concept)
 
     user = Dict("id"=>999, 
             "keywords"=>Dict(
@@ -38,11 +34,11 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 """
 function read_user_file_sources(endpoint_dict)
     
-    kws = DataFrame(execute(LibPQ.Connection(db_conn()), "Select keyword from news_kws")).keyword
+    kws = Vector{String}(DataFrame(execute(LibPQ.Connection(db_conn()), "Select keyword from news_kws")).keyword)
 
-    concepts = [] # REPLACE this with ^ once the concepts table is added
+    concepts = Vector{String}(DataFrame(execute(LibPQ.Connection(db_conn()), "Select concept from news_concepts")).concept)
 
-    sources = [] # REPLACE this with ^ once the concepts table is added
+    sources = Vector{String}(DataFrame(execute(LibPQ.Connection(db_conn()), "Select source from news_sources")).source)
 
     sources = replace.(replace.(sources, "http://"=>""), "/"=>"")
 
