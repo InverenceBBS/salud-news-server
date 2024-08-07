@@ -15,7 +15,7 @@ function write_formatted(formatted, endpoint_dict)
     end
 
     if (nrow(formatted)>0)
-        conn = LibPQ.Connection(addr)
+        conn = LibPQ.Connection(db_conn())
 
         LibPQ.load!(
             (

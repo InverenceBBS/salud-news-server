@@ -37,18 +37,11 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 - `user_address::Stirng`: Address to read the user file at.
 """
 function read_user_file_sources(endpoint_dict)
+    kws = DataFrame(execute(LibPQ.Connection(db_conn()), "Select keyword from news_kws")).keyword
 
-    news_kws = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["keyword"])).body)
-    json = JSON.parse(news_kws)
-    kws = getindex.(json, ["value"])
+    concepts = [] # REPLACE this with ^ once the concepts table is added
 
-    news_concepts = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["concept"])).body)
-    json = JSON.parse(news_concepts)
-    concepts = getindex.(json, ["value"])
-
-    news_sources = String(HTTP.get(string(ENV["METADATAADDR"],endpoint_dict["source"])).body)
-    json = JSON.parse(news_sources)
-    sources = getindex.(json, ["value"])
+    sources = [] # REPLACE this with ^ once the concepts table is added
 
     sources = replace.(replace.(sources, "http://"=>""), "/"=>"")
 
