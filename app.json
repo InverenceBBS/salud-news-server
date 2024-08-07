@@ -1,7 +1,7 @@
 {
     "cron": [
       {
-        "command": "npm run send-email",
+        "command": "julia daily_job.jl",
         "schedule": "@daily"
       }
     ]
