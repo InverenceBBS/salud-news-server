@@ -21,6 +21,7 @@ include("src/news_collection/db_conn.jl")
 
 include("src/collect_news_job.jl")
 
+
 endpoint_dict = Dict("keyword"=>"/news_kws", #REPLACE WITH ENV["CONFIG_KEYWORD_TABLE"]
                   "concept"=>"/news_concept",
                   "source"=>"/news_sources",
