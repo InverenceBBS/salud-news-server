@@ -28,7 +28,7 @@ endpoint_dict = Dict("keyword"=>"/news_kws", #REPLACE WITH ENV["CONFIG_KEYWORD_T
                   "location"=>"https://en.wikipedia.org/wiki/Spain",
                   "news_db"=>db_conn(),
                   "news_table"=>ENV["NEWS_TABLE"])
-
+print("")
 collect_news_job(endpoint_dict, read_user_file_location)
 collect_news_job(endpoint_dict, read_user_file_sources)
 
