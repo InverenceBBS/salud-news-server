@@ -33,6 +33,20 @@ include("src/news_query.jl")
 
 include("src/test_alive.jl")
 
+
+@get "/collect_news_job" function(req::HTTP.Request)
+    endpoint_dict = Dict("keyword"=>"/news_kws", #REPLACE WITH ENV["CONFIG_KEYWORD_TABLE"]
+                  "concept"=>"/news_concept",
+                  "source"=>"/news_sources",
+                  "location"=>"https://en.wikipedia.org/wiki/Spain",
+                  "news_db"=>db_conn(),
+                  "news_table"=>ENV["NEWS_TABLE"])
+    collect_news_job(endpoint_dict, read_user_file_location)
+    collect_news_job(endpoint_dict, read_user_file_sources)
+end
+
+
+
 # title and version are required
 info = Dict("title" => "Absolut News API", "version" => "0.1")
 openApi = OpenAPI("3.0", info)
