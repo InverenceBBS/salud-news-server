@@ -6,14 +6,6 @@ Writes data to the quiron news database with the address `storage_address`.
 - `storage_address::String`: Address of the storage database.
 """
 function write_formatted(formatted, endpoint_dict)
-
-    addr = nothing
-    if haskey(ENV, "HEALTHNEWSUSER") * haskey(ENV, "HEALTHNEWSPASSWORD") * haskey(ENV, "HEALTHNEWSHOST") * haskey(ENV, "HEALTHNEWSDB") * haskey(ENV, "HEALTHNEWSPORT")
-        addr = "user=$(ENV["HEALTHNEWSUSER"]) password=$(ENV["HEALTHNEWSPASSWORD"]) host=$(ENV["HEALTHNEWSHOST"]) dbname=$(ENV["HEALTHNEWSDB"]) port=$(ENV["HEALTHNEWSPORT"])"
-    else
-        error("Missing Keys in the Environment variables")
-    end
-
     if (nrow(formatted)>0)
         conn = LibPQ.Connection(db_conn())
 
