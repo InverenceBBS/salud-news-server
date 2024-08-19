@@ -18,7 +18,6 @@ function read_user_file_location(endpoint_dict)
                 "locations"=>endpoint_dict["location"], 
                 "languages"=>nothing,
                 "concepts"=>concepts,
-                "concepts"=>concepts,
                 "sources"=>nothing
             ))
 end
